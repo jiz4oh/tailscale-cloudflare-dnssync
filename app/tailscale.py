@@ -26,9 +26,7 @@ def getTailscaleDevice(apikey, clientid, clientsecret, tailnet):
         for device in data['devices']:
             #print(device['hostname']+": "+json.dumps(device['addresses']))
             for address in device['addresses']:
-                output.append({'hostname': alterHostname(device['hostname']), 'address': address})
-                if device['name'].split('.')[0].lower() != device['hostname'].lower():
-                    output.append({'hostname': alterHostname(device['name'].split('.')[0].lower()), 'address': address})
+                output.append({'hostname': alterHostname(device['name'].split('.')[0].lower()), 'address': address})
         return output
     else:
         exit(colored("getTailscaleDevice() - {status}, {error}".format(status=str(response.status_code), error=data['message']), "red"))
